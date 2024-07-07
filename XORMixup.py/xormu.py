@@ -21,37 +21,37 @@ For each test case, output a single integer — the value of x, as described in 
 
 
 
-def solve():
-    n = int(input())
-    A = list(map(int, input().split()))
+def solution():
+    size_array = int(input())
+    current_array = list(map(int, input().split()))
     
-    pref = [0] * n 
-    suff = [0] * n 
+    pref = [0] * size_array 
+    suff = [0] * size_array
  
-    pref[0] = A[0]
-    for i in range(1, n):
-        pref[i] = pref[i - 1] ^ A[i]
+    pref[0] = current_array[0]
+    for i in range(1, size_array):
+        pref[i] = pref[i - 1] ^ current_array[i]
  
-    suff[n - 1] = A[n - 1]
-    for i in range(n - 2, -1, -1):
-        suff[i] = suff[i + 1] ^ A[i] 
- 
-    for i in range(n):
-        if i == 0 and suff[i + 1] == A[i]:
-            print(A[i])
-            return 
-        if i == n - 1 and pref[i - 1] == A[i]:
-            print(A[i])
-            return 
-        if pref[i - 1] ^ suff[i + 1] == A[i]:
-            print(A[i])
+    suff[size_array - 1] = current_array[size_array - 1]
+    for i in range(size_array - 2, -1, -1):
+        suff[i] = suff[i + 1] ^ current_array[i] 
+
+    if i == 0 and suff[i + 1] == current_array[i]:
+        print(current_array[i])
+        return 
+    for i in range(1, size_array-1):
+        if pref[i - 1] ^ suff[i + 1] == current_array[i]:
+            print(current_array[i])
             return 
  
+    print(current_array[size_array-1])
+    return 
+        
  
 size_input = int(input())
 
 while size_input != 0:
-    solve()
+    solution()
  
     size_input -= 1
 
