@@ -36,6 +36,7 @@ def solution():
     for i in range(size_array - 2, -1, -1):
         suff[i] = suff[i + 1] ^ current_array[i] 
 
+    i = 0
     if i == 0 and suff[i + 1] == current_array[i]:
         print(current_array[i])
         return 
